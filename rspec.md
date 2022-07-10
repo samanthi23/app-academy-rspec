@@ -218,7 +218,78 @@ lets you express expected outcomes on an object in an example
 expect(account.balance).to eq(Money.new(37.42, :USD))
 ```
 
+# install
 
+``` gem install rspec```
+
+## comparisons
+
+```
+expect(actual).to be >  expected
+expect(actual).to be >= expected
+expect(actual).to be <= expected
+expect(actual).to be <  expected
+expect(actual).to be_within(delta).of(expected)
+```
+
+## regular expressions
+
+```expect(actual).to match(/expression/)```
+
+## types/classes
+
+```
+expect(actual).to be_an_instance_of(expected) # passes if actual.class == expected
+expect(actual).to be_a(expected)              # passes if actual.kind_of?(expected)
+expect(actual).to be_an(expected)             # an alias for be_a
+expect(actual).to be_a_kind_of(expected)      # another alias
+```
+
+## truthiness
+
+```
+expect(actual).to be_truthy   # passes if actual is truthy (not nil or false)
+expect(actual).to be true     # passes if actual == true
+expect(actual).to be_falsy    # passes if actual is falsy (nil or false)
+expect(actual).to be false    # passes if actual == false
+expect(actual).to be_nil      # passes if actual is nil
+expect(actual).to_not be_nil  # passes if actual is not nil
+```
+
+## expecting errors
+
+```
+expect { ... }.to raise_error
+expect { ... }.to raise_error(ErrorClass)
+expect { ... }.to raise_error("message")
+expect { ... }.to raise_error(ErrorClass, "message")
+```
+
+## yielding
+
+```
+expect { |b| 5.tap(&b) }.to yield_control # passes regardless of yielded args
+
+expect { |b| yield_if_true(true, &b) }.to yield_with_no_args # passes only if no args are yielded
+
+expect { |b| 5.tap(&b) }.to yield_with_args(5)
+expect { |b| 5.tap(&b) }.to yield_with_args(Integer)
+expect { |b| "a string".tap(&b) }.to yield_with_args(/str/)
+
+expect { |b| [1, 2, 3].each(&b) }.to yield_successive_args(1, 2, 3)
+expect { |b| { :a => 1, :b => 2 }.each(&b) }.to yield_successive_args([:a, 1], [:b, 2])
+```
+
+# predicat matchers
+```
+expect(actual).to be_xxx         # passes if actual.xxx?
+expect(actual).to have_xxx(:arg) # passes if actual.has_xxx?(:arg)
+```
+
+## link
+
+see link 
+[copied from this link](https://github.com/rspec/rspec-expectations)
 
 
 
