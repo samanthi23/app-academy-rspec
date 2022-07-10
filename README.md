@@ -1,0 +1,2 @@
+
+Happy coding in RSpec!
