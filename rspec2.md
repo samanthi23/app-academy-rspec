@@ -64,3 +64,33 @@ see link
 
 see link 
 [subject and let blocks](https://benscheirman.com/2011/05/dry-up-your-rspec-files-with-subject-let-blocks/)
+
+## let does not persist state
+
+```
+class Cat
+  attr_accessor :name
+
+  def initialize(name)
+    @name = name
+  end
+end
+
+describe "Cat" do
+  let(:cat) { Cat.new("Sennacy") }
+
+  describe "name property" do
+    it "returns something we can manipulate" do
+      cat.name = "Rocky"
+      expect(cat.name).to eq("Rocky")
+    end
+
+    it "does not persist state" do
+      expect(cat.name).to eq("Sennacy")
+    end
+  end
+end
+
+# => All specs pass
+```
+
