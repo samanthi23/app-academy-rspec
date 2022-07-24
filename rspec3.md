@@ -156,6 +156,9 @@ unit tests how an object should interact with other objects
 
 we use real objects instead of mocks
 
+we can verify that all the tests interact properly 
 
+see link 
+[rspec rspec-mocks](https://github.com/rspec/rspec-mocks)
 
 
