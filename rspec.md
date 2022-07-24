@@ -291,5 +291,53 @@ expect(actual).to have_xxx(:arg) # passes if actual.has_xxx?(:arg)
 see link 
 [copied from this link](https://github.com/rspec/rspec-expectations)
 
+# before
+
+```
+describe Chess do
+  let(:board) { Board.new }
+
+  describe '#checkmate?' do
+    context 'when in checkmate' do
+      before(:each) do
+        board.make_move([3, 4], [2, 3])
+        board.make_move([1, 2], [4, 5])
+        board.make_move([5, 3], [5, 1])
+        board.make_move([6, 3], [2, 4])
+      end
+
+      it 'should return true' do
+        expect(board.checkmate?(:black)).to be true
+      end
+    end
+  end
+end
+```
 
 
+```before(:each)``` or ```before(:all)```
+
+also there is ```after(:each)``` and ```after(:all)```
+
+## pending specs
+
+if you simply leave the test bodies empty, it'll look like they are all passing
+
+leave off the do...end from the it
+
+```
+describe '#valid_move?' do
+  it 'should return false for wrong colored pieces'
+  it 'should return false for moves that are off the board'
+  it 'should return false for moves that put you in check'
+end
+```
+
+### predicate syntatic sugar
+
+```expect(Array).to be_empty```
+
+```expect(my_hash).to have_key(my_key)```
+
+see link 
+[rspec rspec-core link](https://relishapp.com/rspec/rspec-core/v/2-4/docs)
