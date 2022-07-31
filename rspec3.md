@@ -162,3 +162,11 @@ see link
 [rspec rspec-mocks](https://github.com/rspec/rspec-mocks)
 
 
+# pyramid
+
+bottom is unit testing
+
+middle is integration tests
+
+top is UI tests
+
